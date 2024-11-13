@@ -69,30 +69,25 @@
     </div>
 
     <script>
-        async function submitVote() {
-            let osisVote = document.querySelector('input[name="osis"]:checked');
-            let mpkVote = document.querySelector('input[name="mpk"]:checked');
+  async function submitVote() {
+  let osisVote = document.querySelector('input[name="osis"]:checked').value;
+  let mpkVote = document.querySelector('input[name="mpk"]:checked').value;
 
-            if (osisVote && mpkVote) {
-                // Kirim data ke Google Apps Script
-                const response = await fetch('https://script.google.com/macros/s/AKfycbzMpuU2PKHlwsNgpNGJ0SYuWIxhSKPMrrxy22SYKOOnRLRmQwh7hBmPXJFlaciLDXJYBQ/exec', {
-                    method: 'POST',
-                    body: new URLSearchParams({
-                        'osis_vote': osisVote.value,
-                        'mpk_vote': mpkVote.value
-                    })
-                });
+  const response = await fetch('https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec', {
+    method: 'POST',
+    body: new URLSearchParams({
+      'osis_vote': osisVote,
+      'mpk_vote': mpkVote
+    })
+  });
 
-                if (response.ok) {
-                    // Menyembunyikan form dan menampilkan hasil
-                    document.getElementById("voting-osis").style.display = 'none';
-                    document.getElementById("voting-mpk").style.display = 'none';
-                    document.getElementById("submit-vote").style.display = 'none';
-                    document.getElementById("vote-result").style.display = 'block';
-
-                    // Tampilkan hasil voting
-                    document.getElementById("osis-result").textContent = "Hasil OSIS: " + osisVote.value;
-                    document.getElementById("mpk-result").textContent = "Hasil MPK: " + mpkVote.value;
+  if (response.ok) {
+    // Beri tahu bahwa vote berhasil
+    alert("Vote berhasil disimpan!");
+  } else {
+    alert("Terjadi kesalahan saat mengirimkan vote.");
+  }
+}
 
                     // Arahkan ke halaman terima kasih setelah vote dikirim
                     setTimeout(function() {
