@@ -73,7 +73,7 @@
   let osisVote = document.querySelector('input[name="osis"]:checked').value;
   let mpkVote = document.querySelector('input[name="mpk"]:checked').value;
 
-  const response = await fetch('https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec', {
+  const response = await fetch('https://script.google.com/macros/s/AKfycbxZO7JI1QbJaTLh6aDg4FpJWPfaV2eV1whJBZVluIvixD5uWX6iG9X3O1zh3UZ02jMySA/exec', {
     method: 'POST',
     body: new URLSearchParams({
       'osis_vote': osisVote,
